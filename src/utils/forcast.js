@@ -5,11 +5,13 @@ const forcast = (logtitut,laptitut,callback) => {
     const url = 'http://api.weatherstack.com/current?access_key=c39242b816735cdc73ce51439b406789&query= ' + logtitut + ',' + laptitut + '&units=f'
     
     request({url : url, json : true}, (error,response) => {
-      if(error) {
-          callback('Unable to connect to weather service!' ,undefined)
+        if(error) {
+            throw "error";
+            // callback('Unable to connect to weather service!' ,undefined)
       }
       else if(response.body.error) {
-          callback('Unable to find location' , undefined)
+            throw "error"; 
+        // callback('Unable to find location' , undefined)
       }
       else {
           callback( undefined, 'weather_descriptions = ' +response.body.current.weather_descriptions[0]   
@@ -17,5 +19,6 @@ const forcast = (logtitut,laptitut,callback) => {
           + response.body.current.weather_code )
       }
     }) 
-  } 
+} 
+
   module.exports = forcast

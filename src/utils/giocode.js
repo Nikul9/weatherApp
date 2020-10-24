@@ -6,9 +6,10 @@ const giocode = (address,callback) => {
 
     request({ url : url , json:true},(error,response) => {
         if(error) {
-            callback('Unable to connect to weather service!',undefined)    
+             callback('Unable to connect to weather service!',undefined)    
         }
         else if(response.body.features.length == 0) {
+           
             callback('Unable to find location',undefined)
         }
         else {
